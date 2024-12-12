@@ -36,7 +36,6 @@ def flood_plots(data):
                 sides = 0
                 ss = set()
                 for x,y,v in side_cache:
-                    n = data[y][x]
                     if not (x,y,v) in ss:
                         sides += 1
                         stack = [(x,y,v)]
@@ -46,25 +45,10 @@ def flood_plots(data):
                                 continue
                             ss.add((x,y,v))
                             for xx,yy in [(x,y+1), (x,y-1), (x+1,y), (x-1,y)]:
-                                if 0 <= xx < len(data[0]) and 0 <= yy < len(data):
-                                    if v == "L" and (x-1 < 0 or data[y][x-1] != n):
-                                        stack.append((xx,yy,v))
-                                    elif v == "R" and (x+1 >= len(data[0]) or data[y][x+1] != n):
-                                        stack.append((xx,yy,v))
-                                    elif v == "U" and (y-1 < 0 or data[y-1][x] != n):
-                                        stack.append((xx,yy,v))
-                                    elif v == "D" and (y+1 >= len(data) or data[y+1][x] != n):
-                                        stack.append((xx,yy,v))
-
-
-                print(f"{plot}: a={area}, f={fences}, s={sides}")
+                                if (xx,yy,v) in side_cache:
+                                    stack.append((xx,yy,v))
                 ret.append((area,fences,sides))
-    return ret                
-def part_a(data):
-
-    return sum([a*f for a,f,_ in flood_plots(data)])
-def part_b(data):
-    return sum([a*s for a,_,s in flood_plots(data)])
+    return ret
 
 def run(path):
     data= parse(path)
