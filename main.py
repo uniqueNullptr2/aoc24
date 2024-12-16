@@ -13,6 +13,8 @@ import day11
 import day12
 import day13
 import day14
+import day15
+import day16
 from os.path import join
 DAYS = [
         day01.run,
@@ -29,11 +31,13 @@ DAYS = [
         day12.run,
         day13.run,
         day14.run,
+        day15.run,
+        day16.run,
     ]
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--day', default=len(DAYS)-1, type=int)
-    parser.add_argument('-i', '--input', default=None, help="name of input file. defaults to dayXX.txt where x is the zeropadded number of day")
+    parser.add_argument('-i', '--input', default=None, help="input suffix. with '-i a' will try to access file dayXX_a.txt")
     parser.add_argument('-D', '--dir', default="./inputs", help="Input directory")
     parser.add_argument('-a', '--all', action="store_true", help="If used will run all days regardless of the other inputs for days. in this case a file by the name of dayXX.txt should exist for all days.")
     args = parser.parse_args()
@@ -55,9 +59,10 @@ def main():
             print("that day does not exist yet")
             exit(-1)
         
-        file = args.input
-        if file is None:
-            file = f"day{args.day:02}.txt"
+        file = f"day{args.day:02}"
+        if not args.input is None:
+            file += f"_{args.input}"
+        file += ".txt"
         path = join(args.dir, file)
         resa, resb = DAYS[args.day-1](path)
         print(f"Day {args.day:02}: A: {resa}, B: {resb}")
