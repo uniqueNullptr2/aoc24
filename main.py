@@ -15,6 +15,7 @@ import day13
 import day14
 import day15
 import day16
+import day17
 from os.path import join
 DAYS = [
         day01.run,
@@ -33,6 +34,7 @@ DAYS = [
         day14.run,
         day15.run,
         day16.run,
+        day17.run,
     ]
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -53,7 +55,7 @@ def main():
             file = f"day{i+1:02}.txt"
             path = join(args.dir, file)
             resa, resb = day(path)
-            print(f"Day {i+1:02}: A: {resa}, B: {resb}")
+            print(f"Day {i+1:02}: A: '{resa}', B: '{resb}'")
     else:
         if args.day > len(DAYS):
             print("that day does not exist yet")
@@ -65,7 +67,7 @@ def main():
         file += ".txt"
         path = join(args.dir, file)
         resa, resb = DAYS[args.day-1](path)
-        print(f"Day {args.day:02}: A: {resa}, B: {resb}")
+        print(f"Day {args.day:02}: A: '{resa}', B: '{resb}'")
     
 
 
