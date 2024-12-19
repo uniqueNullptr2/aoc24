@@ -1,20 +1,19 @@
-import pprint
-def parse(path):
+from util import matrix_print as mprint
+def parse(txt):
     m = []
     instructions = []
-    with open(path, 'r') as f:
-        x,y = (0,0)
-        parts = f.read().strip().split("\n\n")
-        for i,line in enumerate(parts[0].splitlines()):
-            tmp = []
-            for e,ch in enumerate(line.strip()):
-                tmp.append(ch)
-                if ch == "@":
-                    x,y = (e,i)
-            m.append(tmp)
-        for line in parts[1]:
-            for ch in line.strip():
-                instructions.append(ch)
+    x,y = (0,0)
+    parts = txt.strip().split("\n\n")
+    for i,line in enumerate(parts[0].splitlines()):
+        tmp = []
+        for e,ch in enumerate(line.strip()):
+            tmp.append(ch)
+            if ch == "@":
+                x,y = (e,i)
+        m.append(tmp)
+    for line in parts[1]:
+        for ch in line.strip():
+            instructions.append(ch)
     return (x,y,m,instructions)
 
 VECS = {
@@ -23,15 +22,6 @@ VECS = {
     "v": (0,1,True),
     "^": (0,-1,True),
 }
-
-
-def mprint(m):
-    s = ""
-    for l in m:
-        for ch in l:
-            s += ch
-        s += "\n"
-    print(s[:-1])
 
 
 def move(l, m, inst):

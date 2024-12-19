@@ -1,17 +1,16 @@
-def parse(path):
+def parse(text):
     ret = []
-    with open(path, 'r') as f:
-        line = f.read().strip()
-        flag = True
-        i = 0
-        for ch in line:
-            d = int(ch)
-            if flag:
-                ret += [i] * d
-                i += 1
-            else:
-                ret += [None]*d
-            flag = not flag
+    line = text.strip()
+    flag = True
+    i = 0
+    for ch in line:
+        d = int(ch)
+        if flag:
+            ret += [i] * d
+            i += 1
+        else:
+            ret += [None]*d
+        flag = not flag
     return ret
 
 def part_a(data):

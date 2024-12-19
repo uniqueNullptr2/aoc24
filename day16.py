@@ -1,20 +1,19 @@
 from heapq import heapify, heappush, heappop
-def parse(path):
+def parse(txt):
     ret = []
     sx = 0
     sy = 0
     ex = 0
     ez = 0
-    with open(path, 'r') as f:
-        for i,line in enumerate(f.readlines()):
-            ret.append(line.strip())
-            for e,ch in enumerate(line):
-                if ch == "S":
-                    sx = e
-                    sy = i
-                elif ch == "E":
-                    ex = e
-                    ey = i
+    for i,line in enumerate(txt.strip().splitlines()):
+        ret.append(line.strip())
+        for e,ch in enumerate(line):
+            if ch == "S":
+                sx = e
+                sy = i
+            elif ch == "E":
+                ex = e
+                ey = i
     return sx,sy, ex, ey,ret
 
 DIRS = ['R', 'D', 'L', 'U']

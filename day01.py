@@ -1,12 +1,11 @@
 
-def parse(path):
+def parse(text):
     lista = []
     listb = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            p = line.strip().split()
-            lista.append(int(p[0]))
-            listb.append(int(p[1]))
+    for line in text.strip().splitlines():
+        p = line.strip().split()
+        lista.append(int(p[0]))
+        listb.append(int(p[1]))
     return (lista,listb)
 
 def part_a(lista, listb):

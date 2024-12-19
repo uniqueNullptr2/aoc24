@@ -1,16 +1,15 @@
-def parse(path):
+def parse(text):
     x = None
     y = None
-    with open(path, 'r') as f:
-        map = []
-        for i,line in enumerate(f.readlines()):
-            tmp = []
-            for e,ch in enumerate(line.strip()):
-                if ch == "^":
-                    x = e
-                    y = i
-                tmp.append(ch)
-            map.append(tmp)
+    map = []
+    for i,line in enumerate(text.strip().splitlines()):
+        tmp = []
+        for e,ch in enumerate(line.strip()):
+            if ch == "^":
+                x = e
+                y = i
+            tmp.append(ch)
+        map.append(tmp)
     return (x,y,map)
 
 def rotate(x, y):

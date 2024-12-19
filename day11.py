@@ -1,7 +1,6 @@
-def parse(path):
+def parse(txt):
     ret = None
-    with open(path, 'r') as f:
-        ret = [int(x) for x in f.read().strip().split()]
+    ret = [int(x) for x in txt.strip().strip().split()]
     return ret
 
 def process(data, n):

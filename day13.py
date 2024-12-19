@@ -1,16 +1,15 @@
 import math
 
-def parse(path):
+def parse(txt):
     ret = []
-    with open(path, 'r') as f:
-        lines = f.readlines()
-        i = 0
-        while i < len(lines):
-            a = lines[i].strip()[12:].split(", Y+")
-            b = lines[i+1].strip()[12:].split(", Y+")
-            p = lines[i+2].strip()[9:].split(", Y=")
-            i += 4
-            ret.append((int(a[0]), int(a[1]), int(b[0]), int(b[1]), int(p[0]), int(p[1])))
+    lines = txt.strip().splitlines()
+    i = 0
+    while i < len(lines):
+        a = lines[i].strip()[12:].split(", Y+")
+        b = lines[i+1].strip()[12:].split(", Y+")
+        p = lines[i+2].strip()[9:].split(", Y=")
+        i += 4
+        ret.append((int(a[0]), int(a[1]), int(b[0]), int(b[1]), int(p[0]), int(p[1])))
     return ret
 
 def solv(ax,ay,bx,by,px,py):

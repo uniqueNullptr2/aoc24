@@ -1,11 +1,11 @@
 ## Snippet for new Day
 
+### solution
 ```python
-def parse(path):
+def parse(text):
     ret = None
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            pass
+    for line in text.strip().splitlines():
+        pass
     return ret
 
 def part_a(data):
@@ -13,9 +13,19 @@ def part_a(data):
 def part_b(data):
     return 0
 
-def run(path):
+def run(path,a=True,b=True):
     data= parse(path)
-    resa = part_a(data)
-    resb = part_b(data)
+    resa = part_a(data) if a else None
+    resb = part_b(data) if b else None
     return (resa,resb)
+```
+
+### Test
+```python
+def test_dayXX():
+    input="""
+"""
+    a,b = dayXX.run(input)
+    assert a == 
+    assert b == 
 ```

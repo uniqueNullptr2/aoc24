@@ -1,11 +1,10 @@
 from tqdm import tqdm
-def parse(path):
+def parse(text):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            parts = line.split(":")
-            parts1 = parts[1].strip().split()
-            ret.append((int(parts[0]), [int(x) for x in parts1]))
+    for line in text.strip().splitlines():
+        parts = line.split(":")
+        parts1 = parts[1].strip().split()
+        ret.append((int(parts[0]), [int(x) for x in parts1]))
     return ret
 
 def evaluate(operands, operators,res, acc = None, pos = 1):

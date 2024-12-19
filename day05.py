@@ -1,17 +1,16 @@
 from math import ceil
-def parse(path):
-    with open(path, 'r') as f:
-        parts = f.read().split("\n\n")
-        rules = {}
-        updates = []
-        for line in parts[0].splitlines():
-            t = [int(x) for x in line.strip().split("|")]
-            if not t[0] in rules:
-                rules[t[0]] = [t[1]]
-            else:
-                rules[t[0]].append(t[1])
-        for line in parts[1].splitlines():
-            updates.append([int(x) for x in line.strip().split(",")])
+def parse(text):
+    parts = text.strip().split("\n\n")
+    rules = {}
+    updates = []
+    for line in parts[0].splitlines():
+        t = [int(x) for x in line.strip().split("|")]
+        if not t[0] in rules:
+            rules[t[0]] = [t[1]]
+        else:
+            rules[t[0]].append(t[1])
+    for line in parts[1].splitlines():
+        updates.append([int(x) for x in line.strip().split(",")])
     return (rules,updates)
 
 def check_update(update, rules):

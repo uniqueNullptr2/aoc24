@@ -54,8 +54,10 @@ def main():
         for i, day in enumerate(DAYS):
             file = f"day{i+1:02}.txt"
             path = join(args.dir, file)
-            resa, resb = day(path)
-            print(f"Day {i+1:02}: A: '{resa}', B: '{resb}'")
+            with open(path,'r') as f:
+                txt = f.read()
+                resa, resb = day(txt)
+                print(f"Day {i+1:02}: A: '{resa}', B: '{resb}'")
     else:
         if args.day > len(DAYS):
             print("that day does not exist yet")
@@ -66,8 +68,10 @@ def main():
             file += f"_{args.input}"
         file += ".txt"
         path = join(args.dir, file)
-        resa, resb = DAYS[args.day-1](path)
-        print(f"Day {args.day:02}: A: '{resa}', B: '{resb}'")
+        with open(path,'r') as f:
+            txt = f.read()
+            resa, resb = DAYS[args.day-1](txt)
+            print(f"Day {args.day:02}: A: '{resa}', B: '{resb}'")
     
 
 

@@ -1,8 +1,7 @@
-def parse(path):
+def parse(txt):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            ret.append([ch for ch in line.strip()])
+    for line in txt.strip().splitlines():
+        ret.append([ch for ch in line.strip()])
 
     return ret
 

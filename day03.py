@@ -1,8 +1,6 @@
 import re
-def parse(path):
-    ret = None
-    with open(path, 'r') as f:
-        return f.read()
+def parse(text):
+    return text
 
 def compute_mul(mul):
     p1 = mul.split('(')

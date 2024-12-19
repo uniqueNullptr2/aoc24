@@ -1,16 +1,15 @@
-def parse(path):
+def parse(text):
     ret = {}
-    with open(path, 'r') as f:
-        lines = f.readlines()
-        width = len(lines[0].strip())
-        height = len(lines)
-        for i,line in enumerate(lines):
-            for e,ch in enumerate(line.strip()):
-                if ch != ".":
-                    if ch in ret:
-                        ret[ch].append((e,i))
-                    else:
-                        ret[ch] = [(e,i)]
+    lines = text.strip().splitlines()
+    width = len(lines[0].strip())
+    height = len(lines)
+    for i,line in enumerate(lines):
+        for e,ch in enumerate(line.strip()):
+            if ch != ".":
+                if ch in ret:
+                    ret[ch].append((e,i))
+                else:
+                    ret[ch] = [(e,i)]
 
     return (width,height,ret)
 

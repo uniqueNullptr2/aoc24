@@ -1,11 +1,10 @@
-def parse(path):
-    with open(path, 'r') as f:
-        lines = f.read().strip().splitlines()
-        a = int(lines[0].strip().split(": ")[1])
-        b = int(lines[1].strip().split(": ")[1])
-        c = int(lines[2].strip().split(": ")[1])
-        mem = [int(x) for x in lines[4].strip().split(": ")[1].split(",")]
-        return a,b,c,mem
+def parse(txt):
+    lines = txt.strip().splitlines()
+    a = int(lines[0].strip().split(": ")[1])
+    b = int(lines[1].strip().split(": ")[1])
+    c = int(lines[2].strip().split(": ")[1])
+    mem = [int(x) for x in lines[4].strip().split(": ")[1].split(",")]
+    return a,b,c,mem
 
 
 class CPU:
@@ -95,8 +94,8 @@ def part_b(data):
             return i
         i += 1
 
-def run(path):
+def run(path,a=True,b=True):
     data= parse(path)
-    resa = part_a(data)
-    resb = part_b(data)
+    resa = part_a(data) if a else None
+    resb = part_b(data) if b else None
     return (resa,resb)

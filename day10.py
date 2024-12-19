@@ -1,14 +1,13 @@
-def parse(path):
+def parse(text):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            tmp = []
-            for ch in line.strip():
-                if ch == ".":
-                    tmp.append(-1)
-                else:
-                    tmp.append(int(ch))
-            ret.append(tmp)
+    for line in text.strip().splitlines():
+        tmp = []
+        for ch in line.strip():
+            if ch == ".":
+                tmp.append(-1)
+            else:
+                tmp.append(int(ch))
+        ret.append(tmp)
     return ret
 
 

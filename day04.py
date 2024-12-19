@@ -1,8 +1,7 @@
-def parse(path):
+def parse(text):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            ret.append(line.strip())
+    for line in text.strip().splitlines():
+        ret.append(line.strip())
     return ret
 
 def filter(x, y, width, height):

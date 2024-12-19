@@ -1,8 +1,7 @@
-def parse(path):
+def parse(text):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            ret.append([int(x) for x in line.strip().split()])
+    for line in text.strip().splitlines():
+        ret.append([int(x) for x in line.strip().split()])
     return ret
 
 def check_level(r0, r1, increase):

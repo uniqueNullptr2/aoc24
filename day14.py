@@ -1,4 +1,4 @@
-from pprint import pprint
+from util import matrix_print
 from math import floor
 
 
@@ -27,23 +27,17 @@ class Robot:
     def __str__(self):
         return f"[Robot x='{self.x}' y='{self.y}' vx='{self.vx}' vy='{self.vy}']"
 
-
-WIDTH = 101
-HEIGHT = 103
-
-
-def parse(path):
+def parse(txt):
     ret = []
-    with open(path, 'r') as f:
-        for line in f.readlines():
-            parts = line.strip().split()
-            pp = parts[0][2:].strip().split(",")
-            pv = parts[1][2:].strip().split(",")
-            ret.append(Robot(int(pp[0]), int(pp[1]), int(pv[0]), int(pv[1])))
+    for line in txt.strip().splitlines():
+        parts = line.strip().split()
+        pp = parts[0][2:].strip().split(",")
+        pv = parts[1][2:].strip().split(",")
+        ret.append(Robot(int(pp[0]), int(pp[1]), int(pv[0]), int(pv[1])))
     return ret
 
 
-def check_tree(tree):
+def check_tree(tree,width):
     for l in tree:
         c = 0
         for x in l:
@@ -51,7 +45,7 @@ def check_tree(tree):
                 c += 1
             else:
                 c = 0
-            if c > 20:
+            if c > width/4:
                 return True
     return False
 
@@ -66,19 +60,19 @@ def count(robots,w,h):
     return c1*c2*c3*c4
 
 
-def part_a(data):
+def part_a(data, width, height):
     for _ in range(100):
         for r in data:
-            r.move(WIDTH, HEIGHT)
+            r.move(width, height)
 
-    return count(data, WIDTH,HEIGHT)
+    return count(data, width,height)
 
 
-def part_b(data):
+def part_b(data,width,height):
     b = []
-    for _ in range(HEIGHT):
+    for _ in range(height):
         t = []
-        for _ in range(WIDTH):
+        for _ in range(width):
             t.append(0)
         b.append(t)
     for r in data:
@@ -86,19 +80,20 @@ def part_b(data):
 
     i = 0
     while True:
-        if check_tree(b):
+        if check_tree(b,width):
+            # matrix_print(b)
             return i
         for r in data:
             b[r.y][r.x] -= 1
-            r.move(WIDTH, HEIGHT)
+            r.move(width, height)
             b[r.y][r.x] += 1
         i += 1
 
 
-def run(path):
+def run(path,width=101,height=103):
     data= parse(path)
-    resa = part_a(data)
+    resa = part_a(data,width,height)
     for r in data:
         r.reset()
-    resb = part_b(data)
+    resb = part_b(data,width,height)
     return (resa,resb)
