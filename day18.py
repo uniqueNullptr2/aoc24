@@ -32,17 +32,16 @@ def dijkstraaaa(m,d,debug=False):
     s = set()
     while len(heap) > 0:
         item = heappop(heap)
-        if debug:
-            m[item.y][item.x] = item.p
+        m[item.y][item.x] = item.p
         if item.xy() in s:
             continue
         s.add(item.xy())
 
-        if not win is None and item.p > win:
+        if not win is None:
             if debug:
                 mprint(m)
             return win
-        if item.xy() == (d-1,d-1):
+        if item.xy() == (d-1,d-1) and (win is None or item.p < win):
             win = item.p
         for i in item.step():
             if not i.xy() in s and not m[i.y][i.x] == "X":
@@ -50,13 +49,24 @@ def dijkstraaaa(m,d,debug=False):
     if debug:
         mprint(m)
     return win
-def part_a(data,d,c):
-    pass
-    
-    # mprint(m)
-    
-def part_b(data,d):
-    return 0
+
+def check_path(m):
+    stack = [(len(m)-1,len(m)-1)]
+    s = set()
+    while len(stack) > 0:
+        x,y = stack.pop()
+        if (x,y) in s:
+            continue
+        s.add((x,y))
+        if (x,y) == (0,0):
+            return True
+        for dx,dy in [(1,0), (-1,0),(0,1),(0,-1)]:
+            xx = x+dx
+            yy = y+dy
+            if 0 <= xx < len(m) and 0 <= yy < len(m) and m[yy][xx] != "X":
+                stack.append((xx,yy))
+    return False
+
 
 def run(path,a=True,b=True,d=71,c=1024):
     data= parse(path)
@@ -64,10 +74,11 @@ def run(path,a=True,b=True,d=71,c=1024):
     for x,y in data[:c]:
         m[y][x] = 'X'
     resa = dijkstraaaa(m,d)
+    # mprint(m)
     resb = None
     for x,y in data[c:]:
         m[y][x] = "X"
-        if dijkstraaaa(m,d) is None:
+        if not check_path(m):
             resb = f"{x},{y}"
             break
     return (resa,resb)
