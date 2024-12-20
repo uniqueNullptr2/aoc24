@@ -15,6 +15,8 @@ import day14
 import day15
 import day16
 import day17
+import day18
+import day19
 
 def test_day01():
     input="""3   4
@@ -288,6 +290,37 @@ Program: 0,1,5,4,3,0
     assert a == "4,6,3,5,6,3,5,2,1,0"
     # assert b == 117440
 
+
+def test_day18():
+    input = """5,4
+4,2
+4,5
+3,0
+2,1
+6,3
+2,4
+1,5
+0,6
+3,3
+2,6
+5,1
+1,2
+5,5
+2,5
+6,5
+1,4
+0,4
+6,4
+1,1
+6,1
+1,0
+0,5
+1,6
+2,0
+"""
+    a,b = day18.run(input,d=7,c=12)
+    assert a == 22
+    assert b == "6,1"
 # def test_dayXX():
 #     input="""
 # """

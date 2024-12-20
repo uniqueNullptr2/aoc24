@@ -16,7 +16,10 @@ import day14
 import day15
 import day16
 import day17
+import day18
+import day19
 from os.path import join
+
 DAYS = [
         day01.run,
         day02.run,
@@ -35,7 +38,10 @@ DAYS = [
         day15.run,
         day16.run,
         day17.run,
+        day18.run,
+        day19.run,
     ]
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--day', default=len(DAYS)-1, type=int)
