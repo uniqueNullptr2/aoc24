@@ -1,16 +1,29 @@
 def parse(text):
-    ret = None
-    for line in text.strip().splitlines():
-        pass
-    return ret
+    lines = text.strip().splitlines()
+    towels = lines[0].strip().split(", ")
+    patterns = [line.strip() for line in lines[2:]]
 
-def part_a(data):
-    return 0
-def part_b(data):
-    return 0
+    return towels, patterns
+
+def find(l,s, mem={}):
+    c = 0 
+    if s in mem:
+        return mem[s]
+    for ll in l:
+        if s == ll:
+            c += 1
+        elif s.startswith(ll):
+           c += find(l, s[len(ll):], mem)
+    mem[s] = c
+    return c
 
 def run(path,a=True,b=True):
-    data= parse(path)
-    resa = part_a(data) if a else None
-    resb = part_b(data) if b else None
+    towels,patterns = parse(path)
+    resa = 0
+    resb = 0
+    for p in patterns:
+        t = find(towels, p)
+        if t > 0:
+            resa += 1
+        resb += t
     return (resa,resb)

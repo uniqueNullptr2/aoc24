@@ -321,6 +321,23 @@ def test_day18():
     a,b = day18.run(input,d=7,c=12)
     assert a == 22
     assert b == "6,1"
+
+def test_day19():
+    input="""r, wr, b, g, bwu, rb, gb, br
+
+brwrr
+bggr
+gbbr
+rrbgbr
+ubwu
+bwurrg
+brgr
+bbrgwb
+"""
+    a,b = day19.run(input)
+    assert a == 6
+    assert b == 16
+
 # def test_dayXX():
 #     input="""
 # """
