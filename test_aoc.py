@@ -17,6 +17,10 @@ import day16
 import day17
 import day18
 import day19
+import day20
+import day21
+import day22
+
 
 def test_day01():
     input="""3   4
@@ -338,6 +342,38 @@ bbrgwb
     assert a == 6
     assert b == 16
 
+def test_day20():
+    input="""###############
+#...#...#.....#
+#.#.#.#.#.###.#
+#S#...#.#.#...#
+#######.#.#.###
+#######.#.#...#
+#######.#.###.#
+###..E#...#...#
+###.#######.###
+#...###...#...#
+#.#####.#.###.#
+#.#...#.#.#...#
+#.#.#.#.#.#.###
+#...#...#...###
+###############
+"""
+    a,b = day20.run(input,ev=20)
+    assert a == 5
+    # assert b == 16
+
+
+def test_day21():
+    input="""029A
+980A
+179A
+456A
+379A
+"""
+    a,b = day21.run(input)
+    assert a == 126384
+    # assert b == 
 # def test_dayXX():
 #     input="""
 # """

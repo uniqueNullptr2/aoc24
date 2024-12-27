@@ -18,6 +18,9 @@ import day16
 import day17
 import day18
 import day19
+import day20
+import day21
+import day22
 from os.path import join
 
 DAYS = [
@@ -40,6 +43,9 @@ DAYS = [
         day17.run,
         day18.run,
         day19.run,
+        day20.run,
+        day21.run,
+        day22.run
     ]
 
 def parse_args():
